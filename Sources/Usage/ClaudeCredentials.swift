@@ -26,7 +26,14 @@ enum ClaudeCredentials {
     /// Emitted as `WindowUsage.error` when the usage endpoint rate-limits us
     /// (HTTP 429, or 200 with a rate_limit_error body). `UsageStore` matches
     /// on this exact string to arm the post-429 fetch cooldown.
-    static let rateLimitedMessage = "rate limited"
+    ///
+    /// Deliberately NOT worded "rate limited" — that reads to users as "your
+    /// Claude account/plan is exhausted, Claude Code won't work," which is
+    /// wrong: this is the undocumented `/api/oauth/usage` probe itself being
+    /// throttled (anthropics/claude-code#30930), unrelated to whether Claude
+    /// Code can actually serve requests. The wording says what's true: we
+    /// just don't have a fresh usage reading right now.
+    static let rateLimitedMessage = "usage check throttled"
 
     /// Outcome of a single usage-endpoint probe against one token. The fetcher
     /// owns the HTTP + parsing and reports back through this; `ClaudeCredentials`

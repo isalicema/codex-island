@@ -104,7 +104,7 @@ struct ResolveUsageTests {
 
         // The store and views match these exact strings; a reword is a
         // breaking change for them, not a copy edit.
-        expect(ClaudeCredentials.rateLimitedMessage == "rate limited", "rateLimitedMessage literal is stable")
+        expect(ClaudeCredentials.rateLimitedMessage == "usage check throttled", "rateLimitedMessage literal is stable")
         expect(ClaudeCredentials.reauthRequiredMessage == "re-login: claude /login", "reauthRequiredMessage literal is stable")
 
         if failures > 0 {
